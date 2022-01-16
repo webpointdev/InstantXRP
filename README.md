@@ -1,3 +1,5 @@
+![design_dapp](https://user-images.githubusercontent.com/88071912/149582548-1b6be0e7-bb7c-4344-9192-3fc56a118c5e.jpg)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
