@@ -1,4 +1,5 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import Button from "./Button";
 import Input from "./Input";
@@ -31,6 +32,9 @@ export const FormContainer = styled.div`
     align-items: center !important;
     max-height: 500px !important;
   }
+  @media screen and (max-width: 720px) {
+    padding: auto 20px auto 20px;
+  }
 `;
 export const BlanceBlock = styled.div`
   font-size: 28px;
@@ -54,26 +58,26 @@ export const BuyBlock = styled.div`
   text-transform: uppercase;
   color: #fff;
   display: flex;
+  width: 100%;
   flex-direction: column;
   * {
-    margin-bottom: 20px;
-  }
-  :nth-last-child() {
-    margin-bottom: 0px;
+    grid-gap: 20px;
   }
   @media screen and (max-width: 1200px) {
     align-items: center !important;
   }
 `;
 const Form = () => {
+  //@ts-ignore
+  const buyEth = useSelector((state) => state.home.buyEth);
   return (
     <FormContainer>
       <BlanceBlock>
-        InstantXrp balance<div>0.3456eth</div>
+        InstantXrp balance<div>{buyEth} eth</div>
       </BlanceBlock>
       <BuyBlock>
         <span>buy instantxrp v2</span>
-        <Input />
+        <Input onChange />
         <Button width={139} height={45} content="buy now" fSize={17} />
       </BuyBlock>
     </FormContainer>

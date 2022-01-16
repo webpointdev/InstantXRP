@@ -37,7 +37,7 @@ export const TokenomicsFuncGroup = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 1200px;
-  @media screen and (max-width: 1260px) {
+  @media screen and (max-width: 1195px) {
     width: 100% !important;
   }
   @media screen and (max-width: 1000px) {

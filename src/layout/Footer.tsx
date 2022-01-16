@@ -57,8 +57,8 @@ const Footer = () => {
         <SmallLogo />
         <FooterTitle>Copyright@ instandXRPV2 All rights reserved.</FooterTitle>
         <ItemGroup>
-          <NavbarItem href="#">About us</NavbarItem>
-          <NavbarItem href="#">Tokenomics</NavbarItem>
+          <NavbarItem href="#aboutus">About us</NavbarItem>
+          <NavbarItem href="#tokenomics">Tokenomics</NavbarItem>
         </ItemGroup>
       </SectionContent>
     </FooterContainer>
