@@ -5,3 +5,7 @@ declare module "*.svg" {
   export default content;
 }
 declare module "react-icons";
+interface Window {
+  ethereum: any;
+}
+declare module "react-notifications";

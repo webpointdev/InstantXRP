@@ -1,9 +1,10 @@
 import React from "react";
 import ScrollToTop from "react-scroll-to-top";
 import Landing from "./pages/Landing";
-import { ConnectedRouter } from "connected-react-router";
 import { Provider } from "react-redux";
 import { Route } from "react-router-dom";
+
+import "antd/dist/antd.css";
 
 import configureStore, { history } from "./store";
 
