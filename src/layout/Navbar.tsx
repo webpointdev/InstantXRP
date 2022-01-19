@@ -25,9 +25,9 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    let addr = window.localStorage.getItem("addr");
-    if (addr) {
-      setAddress(addr);
+    const { ethereum } = window;
+    if (ethereum && window.sessionStorage.getItem("addr")) {
+      handleConnect();
     }
   }, []);
 
@@ -44,43 +44,45 @@ const Navbar = () => {
   };
   const handleConnect = async () => {
     const { ethereum } = window;
-    let addr = window.localStorage.getItem("addr");
-    if (address != "" && addr) {
-      window.localStorage.removeItem("addr");
-      setAddress("");
-    } else {
-      if (ethereum) {
-        const ChainId = await window.ethereum.request({
-          method: "eth_chainId",
-        });
-        if (ChainId === "0x1") {
-          await window.ethereum
-            .request({ method: "eth_requestAccounts" })
-            .then((accs: any) => {
-              if (accs && accs.length) {
-                setAddress(accs[0]);
-                window.localStorage.setItem("addr", accs[0].toString());
-              }
-            })
-            .catch((e: any) => {
-              notification["warning"]({
-                message: "Warning",
-                description: "metamask connect failed...",
-              });
-            });
-        } else {
+    if (ethereum) {
+      const ChainId = await window.ethereum.request({
+        method: "eth_chainId",
+      });
+      if (ChainId === "0x38") {
+        if (address) {
           notification["warning"]({
             message: "Warning",
-            description: "please correct choose chain...",
+            description: "already connected...",
           });
         }
+        await window.ethereum
+          .request({ method: "eth_requestAccounts" })
+          .then((accs: any) => {
+            if (accs && accs.length) {
+              setAddress(accs[0]);
+              window.sessionStorage.setItem("addr", accs[0].toString());
+            }
+          })
+          .catch((e: any) => {
+            notification["warning"]({
+              message: "Warning",
+              description: "metamask connect failed...",
+            });
+          });
       } else {
         notification["warning"]({
           message: "Warning",
-          description: "please install the metamask...",
+          description: "please correct choose chain...",
         });
+        console.log(ChainId);
       }
+    } else {
+      notification["warning"]({
+        message: "Warning",
+        description: "please install the metamask...",
+      });
     }
+    // }
   };
   return (
     <NavbarContainer>
